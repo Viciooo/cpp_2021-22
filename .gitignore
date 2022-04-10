@@ -128,3 +128,5 @@ googlemock/gtest
 /CMakeCache.txt
 /ALL_BUILD.vcxproj.filters
 /ALL_BUILD.vcxproj
+/project3/Dockerfile
+/project3/Doxyfile
