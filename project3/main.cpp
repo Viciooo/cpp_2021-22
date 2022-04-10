@@ -36,10 +36,10 @@ Tresc do implementacji - szukaj w plikach *.h
 **/
 
 /// @todo Uzupelnij swoje dane:
-constexpr const char* const FIRSTNAME = "";
-constexpr const char* const SURNAME   = "";
-constexpr const char* const MAIL    = "";
-constexpr const char* const BOOK_ID = "";
+constexpr const char* const FIRSTNAME = "Piotr";
+constexpr const char* const SURNAME   = "Witek";
+constexpr const char* const MAIL    = "piotrw@student.agh.edu.pl";
+constexpr const char* const BOOK_ID = "406781";
 
 constexpr const char* const TEACHER_MAIL = "bazior[at]agh.edu.pl"; // change if not correct
 

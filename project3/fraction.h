@@ -38,19 +38,55 @@ Mozna tworzyc dowolna ilosc metod pomocniczych, jednakze aby byly one prywatne.
 Gettery i settery operujace na liczbach, ktore nie rzucaja wyjatku, warto zadeklarowac jako `noexcept`.
 **/
 
+#include <numeric>
 
-class Fraction
-{
-#ifndef _MSC_FULL_VER // if not Visual Studio Compiler
-    #warning "Klasa jest do zaimplementowania. Instrukcja w pliku naglowkowym"
-#else
-    #pragma message ("Klasa jest do zaimplementowania. Instrukcja w pliku naglowkowym")
-#endif
-// TODO: zaimplementowac cialo klasy, usunac ten komentarz i warning powyzszy
+class Fraction {
 public:
+    explicit Fraction(int numerator = 0, int denominator = 1)  : numerator_(numerator), denominator_(denominator) {}
+
+    [[nodiscard]] int numerator() const noexcept{
+        return numerator_;
+    }
+
+    void setNumerator(int numerator) noexcept{
+        numerator_ = numerator;
+    }
+
+    [[nodiscard]] int  denominator() const noexcept {
+        return denominator_;
+    }
+
+    void setDenominator(int denominator) {
+        if(denominator_ == 0) throw std::invalid_argument("Denominator can not be equal 0!");
+        denominator_ = denominator;
+    }
+
+
+    friend Fraction operator+(Fraction left, const Fraction right) {
+        Fraction result = Fraction(left.numerator_ * right.denominator_ + right.numerator_ * left.denominator_,
+                                   left.denominator_ * right.denominator_);
+        reduce(result);
+        if(result.denominator_ == 0) throw std::invalid_argument("Denominator can not be equal 0!");
+        return result;
+    }
+
+    friend Fraction operator*(Fraction left, const Fraction right) {
+        Fraction result = Fraction(left.numerator_*right.numerator_,
+                                   left.denominator_ * right.denominator_);
+        reduce(result);
+        if(result.denominator_ == 0) throw std::invalid_argument("Denominator can not be equal 0!");
+        return result;
+    }
+
+    static void reduce(Fraction fraction){
+        int div = std::gcd(fraction.numerator_,fraction.denominator_);
+        fraction.numerator_ /= div;
+        fraction.denominator_ /= div;
+    }
 
 private: // members:
-
+    int numerator_;
+    int denominator_;
 };
 
 

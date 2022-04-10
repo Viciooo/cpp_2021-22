@@ -64,17 +64,39 @@ Nasza implementacja w razie automatycznego zwiekszania rozmiaru ma allokowac pam
 **/
 
 #include <cstddef> // std::size_t
+#include <memory>
 #include "fraction.h"
 
 
 class Vector
 {
-#ifndef _MSC_FULL_VER // if not Visual Studio Compiler
-    #warning "Klasa jest do zaimplementowania. Instrukcja w pliku naglowkowym"
-#else
-    #pragma message ("Klasa jest do zaimplementowania. Instrukcja w pliku naglowkowym")
-#endif
-// TODO: zaimplementowac cialo klasy, usunac ten komentarz i warning powyzszy
+public:
+
+    explicit Vector(size_t capacity=0,size_t size=0){
+        size_ = size;
+        capacity_ = capacity;
+    }
+
+    [[nodiscard]] size_t size() const {
+        return size_;
+    }
+
+    void setSize(size_t size) {
+        size_ = size;
+    }
+
+    [[nodiscard]] size_t capacity() const {
+        return capacity_;
+    }
+
+    void setCapacity(size_t capacity) {
+        capacity_ = capacity;
+    }
+
+private:
+    std::unique_ptr<Fraction[]> data_;
+    std::size_t size_;
+    std::size_t capacity_;
 };
 
 #endif // VECTOR_H
