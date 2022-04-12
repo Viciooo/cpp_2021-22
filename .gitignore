@@ -130,3 +130,8 @@ googlemock/gtest
 /ALL_BUILD.vcxproj
 /project3/Dockerfile
 /project3/Doxyfile
+/project1/tests/
+/project1/utils/
+/project2/tests/
+/project3/doxyfiles/
+/project3/tests/
