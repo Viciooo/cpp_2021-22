@@ -66,15 +66,34 @@ Nasza implementacja w razie automatycznego zwiekszania rozmiaru ma allokowac pam
 #include <cstddef> // std::size_t
 #include <memory>
 #include "fraction.h"
+#include <stdexcept>
 
-
-class Vector
-{
+class Vector {
 public:
 
-    explicit Vector(size_t capacity=0,size_t size=0){
-        size_ = size;
-        capacity_ = capacity;
+    explicit Vector(size_t capacity = 0) : data_(std::make_unique<Fraction[]>(capacity)), capacity_(capacity) {}
+
+    Vector(Vector &other) : capacity_(other.capacity_), size_(other.size_),
+                            data_(std::make_unique<Fraction[]>(other.capacity_)) {
+        Fraction tmp[other.size()];
+        for (int i = 0; i < other.size_; ++i) {
+            tmp[i] = other.data_[i];
+            data_[i] = tmp[i];
+        }
+    }
+
+    Vector(Vector &&v) noexcept:
+            data_(nullptr),
+            size_(0),
+            capacity_(0)
+            {
+        data_ = std::move(v.data_);
+        capacity_ = v.capacity_;
+        size_ = v.size_;
+
+        v.size_ = 0;
+        v.capacity_ = 0;
+        v.data_ = nullptr;
     }
 
     [[nodiscard]] size_t size() const {
@@ -85,6 +104,20 @@ public:
         size_ = size;
     }
 
+    void push_back(Fraction fraction) {
+        if(size_ < capacity_){
+            data_[size_] = fraction;
+            size_++;
+            return;
+        }
+        capacity_++;
+        std::unique_ptr<Fraction[]> tmp  = std::make_unique<Fraction[]>(capacity_);
+        for (int i = 0; i < size_; ++i) {
+            tmp[i] = data_[i];
+        }
+        push_back(fraction);
+    }
+
     [[nodiscard]] size_t capacity() const {
         return capacity_;
     }
@@ -93,9 +126,44 @@ public:
         capacity_ = capacity;
     }
 
+    Fraction operator[](size_t i) const {
+        if (i >= size_) throw std::out_of_range("Index you want to access is bigger than the vector size - sorry buddy");
+        return data_[i];
+    };
+
+    Fraction operator[](size_t i) {
+        if (i >= size_) throw std::out_of_range("Index you want to access is bigger than the vector size - sorry buddy");
+        return data_[i];
+    };
+
+    Vector &operator=(const Vector &other) {
+        size_ = other.size_;
+        capacity_ = other.capacity_;
+        Fraction tmp[other.size()];
+        for (int i = 0; i < other.size_; ++i) {
+            tmp[i] = other.data_[i];
+            data_[i] = tmp[i];
+        }
+        return *this;
+    }
+
+    Vector& operator=(Vector&& other) noexcept
+    {
+        if (this != &other)
+        {
+            data_ = std::move(other.data_);
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            other.capacity_ = 0;
+            other.size_ = 0;
+        }
+        return *this;
+    }
+
+
 private:
     std::unique_ptr<Fraction[]> data_;
-    std::size_t size_;
+    std::size_t size_ = 0;
     std::size_t capacity_;
 };
 

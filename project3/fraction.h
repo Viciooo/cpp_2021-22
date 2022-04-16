@@ -44,6 +44,16 @@ class Fraction {
 public:
     explicit Fraction(int numerator = 0, int denominator = 1)  : numerator_(numerator), denominator_(denominator) {}
 
+//    Fraction(Fraction& other){
+//        numerator_ = other.numerator_;
+//        denominator_ = other.denominator_;
+//    }
+
+    explicit Fraction(Fraction *pFraction) {
+        numerator_ = pFraction->numerator_;
+        denominator_ = pFraction->denominator_;
+    }
+
     [[nodiscard]] int numerator() const noexcept{
         return numerator_;
     }
