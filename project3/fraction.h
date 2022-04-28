@@ -42,16 +42,14 @@ Gettery i settery operujace na liczbach, ktore nie rzucaja wyjatku, warto zadekl
 
 class Fraction {
 public:
-    explicit Fraction(int numerator = 0, int denominator = 1)  : numerator_(numerator), denominator_(denominator) {}
-
-//    Fraction(Fraction& other){
-//        numerator_ = other.numerator_;
-//        denominator_ = other.denominator_;
-//    }
+    explicit Fraction(int numerator = 0, int denominator = 1){
+        setDenominator(denominator);
+        setNumerator(numerator);
+    }
 
     explicit Fraction(Fraction *pFraction) {
-        numerator_ = pFraction->numerator_;
-        denominator_ = pFraction->denominator_;
+        setDenominator(pFraction->denominator_);
+        setNumerator(pFraction->numerator_);
     }
 
     [[nodiscard]] int numerator() const noexcept{
@@ -67,7 +65,7 @@ public:
     }
 
     void setDenominator(int denominator) {
-        if(denominator_ == 0) throw std::invalid_argument("Denominator can not be equal 0!");
+        if(denominator == 0) throw std::invalid_argument("Denominator can not be equal 0!");
         denominator_ = denominator;
     }
 
@@ -88,7 +86,7 @@ public:
         return result;
     }
 
-    static void reduce(Fraction fraction){
+    static void reduce(Fraction& fraction){
         int div = std::gcd(fraction.numerator_,fraction.denominator_);
         fraction.numerator_ /= div;
         fraction.denominator_ /= div;

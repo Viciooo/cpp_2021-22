@@ -121,7 +121,7 @@ public:
     [[nodiscard]] size_t capacity() const {
         return capacity_;
     }
-
+   
     void setCapacity(size_t capacity) {
         capacity_ = capacity;
     }
