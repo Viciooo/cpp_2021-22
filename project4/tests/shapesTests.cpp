@@ -264,238 +264,238 @@ TEST_F(CircleTester, constructorOfCircleWithRadiusEqualToZero)
 }
 
 
-//TEST_F(ShapeCompositeTester, sumOfSqhareAndCircle)
-//{
-//#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
-//    constexpr int xFrom = 2, xTo = 8;
-//    constexpr int yFrom = 0, yTo = 6;
-//    shared_ptr<Shape> rectangle(new Shapes::Rectangle(xFrom, yFrom, xTo, yTo));
-//    printShape(rectangle.get(), xTo, yTo);
-//    /** (rectangle)
-//     y
-//     6:   *******
-//     5:   *******
-//     4:   *******
-//     3:   *******
-//     2:   *******
-//     1:   *******
-//     0:   *******
-//      : 012345678 x
-//     */
-//
-//    constexpr auto squareXCenter = xFrom+(xTo-xFrom)/2, yCenter = yTo, radius = (xTo-xFrom)/2;
-//    shared_ptr<Shape> circle(new Shapes::Circle(squareXCenter, yCenter, radius));
-//    printShape(circle.get(), xTo, yTo+radius);
-//    /** circle:
-//     y
-//     9:     ***
-//     8:    *****
-//     7:   *******
-//     6:   *******
-//     5:   *******
-//     4:    *****
-//     3:     ***
-//     2:
-//     1:
-//     0:
-//      : 012345678
-//     */
-//
-//
-//    const Shapes::ShapeComposite composite(rectangle, circle, Shapes::ShapeOperation::SUM);
-//    printShape(&composite, xTo, yTo+radius);
-//    /** circle + square:
-//     y
-//     9:     ***
-//     8:    *****
-//     7:   *******
-//     6:   *******
-//     5:   *******
-//     4:   *******
-//     3:   *******
-//     2:   *******
-//     1:   *******
-//     0:   *******
-//      : 012345678 x **/
-//    ASSERT_TRUE(composite.isIn(7, 6));
-//    ASSERT_TRUE(composite.isIn(squareXCenter, yTo+radius));
-//#else
-//    ADD_FAILURE() << "Required classes not implemented not implemented!";
-//#endif
-//}
-//
-//TEST_F(ShapeCompositeTester, intersectionOfSqhareAndCircle)
-//{
-//#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
-//    constexpr int xFrom = 2, xTo = 8;
-//    constexpr int yFrom = 0, yTo = 6;
-//    shared_ptr<Shape> rectangle(new Shapes::Rectangle(xFrom, yFrom, xTo, yTo));
-//    printShape(rectangle.get(), xTo, yTo);
-//    /** (rectangle)
-//     y
-//     6:   *******
-//     5:   *******
-//     4:   *******
-//     3:   *******
-//     2:   *******
-//     1:   *******
-//     0:   *******
-//      : 012345678 x
-//     */
-//
-//    constexpr auto squareXCenter = xFrom+(xTo-xFrom)/2, yCenter = yTo, radius = (xTo-xFrom)/2;
-//    shared_ptr<Shape> circle(new Shapes::Circle(squareXCenter, yCenter, radius));
-//    printShape(circle.get(), xTo, yTo+radius);
-//    /** circle:
-//     y
-//     9:     ***
-//     8:    *****
-//     7:   *******
-//     6:   *******
-//     5:   *******
-//     4:    *****
-//     3:     ***
-//     2:
-//     1:
-//     0:
-//      : 012345678
-//     */
-//
-//    const Shapes::ShapeComposite composite(rectangle, circle, Shapes::ShapeOperation::INTERSECTION);
-//    printShape(&composite, xTo, yTo+radius);
-//    /** circle + square:
-//     y
-//     7:
-//     6:   *******
-//     5:   *******
-//     4:    *****
-//     3:     ***
-//     2:
-//     1:
-//     0:
-//      : 012345678 x **/
-//    ASSERT_TRUE(composite.isIn(xFrom, yTo));
-//    ASSERT_FALSE(composite.isIn(xFrom, yFrom));
-//#else
-//    ADD_FAILURE() << "Required classes not implemented not implemented!";
-//#endif
-//}
-//
-//TEST_F(ShapeCompositeTester, differenceOfSqhareAndCircle)
-//{
-//#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
-//    constexpr int xFrom = 2, xTo = 8;
-//    constexpr int yFrom = 0, yTo = 6;
-//    shared_ptr<Shape> rectangle(new Shapes::Rectangle(xFrom, yFrom, xTo, yTo));
-//    printShape(rectangle.get(), xTo, yTo);
-//    /** (rectangle)
-//     y
-//     6:   *******
-//     5:   *******
-//     4:   *******
-//     3:   *******
-//     2:   *******
-//     1:   *******
-//     0:   *******
-//      : 012345678 x
-//     */
-//
-//    constexpr auto squareXCenter = xFrom+(xTo-xFrom)/2, yCenter = yTo, radius = (xTo-xFrom)/2;
-//    shared_ptr<Shape> circle(new Shapes::Circle(squareXCenter, yCenter, radius));
-//    printShape(circle.get(), xTo, yTo+radius);
-//    /** circle:
-//     y
-//     9:     ***
-//     8:    *****
-//     7:   *******
-//     6:   *******
-//     5:   *******
-//     4:    *****
-//     3:     ***
-//     2:
-//     1:
-//     0:
-//      : 012345678
-//     */
-//
-//    const Shapes::ShapeComposite composite(rectangle, circle, Shapes::ShapeOperation::DIFFERENCE);
-//    printShape(&composite, xTo, yTo+radius);
-//    /** circle + square:
-//     y
-//     5:
-//     4:   *     *
-//     3:   **   **
-//     2:   *******
-//     1:   *******
-//     0:   *******
-//      : 012345678 x **/
-//    ASSERT_FALSE(composite.isIn(xFrom, yTo));
-//    ASSERT_TRUE(composite.isIn(xFrom, yFrom));
-//#else
-//    ADD_FAILURE() << "Required classes not implemented not implemented!";
-//#endif
-//}
-//
-//TEST_F(ShapeCompositeTester, drawingHouse)
-//{
-//#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
-//    constexpr int homeWidth = 20, homeHeigh = 10;
-//    constexpr int homeXFrom = 4, homeXTo = homeXFrom+homeWidth, homeYFrom = 1, homeYTo = homeYFrom + homeHeigh;
-//    shared_ptr<Shape> home(new Shapes::Rectangle(homeXFrom, homeYFrom, homeXTo, homeYTo));
-//
-//    constexpr int homeXCenter = homeXFrom + homeWidth/2, roofHeigh = homeWidth/2;
-//    shared_ptr<Shape> roof(new Shapes::Circle(homeXCenter, homeYTo, roofHeigh));
-//
-//    shared_ptr<Shape> homeWithRoof(new Shapes::ShapeComposite(home, roof, Shapes::ShapeOperation::SUM));
-//
-//    constexpr int doorXFrom = homeXFrom + homeWidth/6, doorXTo = doorXFrom + homeWidth/4;
-//    constexpr int doorYFrom = homeYFrom + 1, doorYTo = doorYFrom + homeHeigh/2 + homeHeigh/3 + homeHeigh/4;
-//    shared_ptr<Shape> door(new Shapes::Rectangle(doorXFrom, doorYFrom, doorXTo, doorYTo));
-//
-//    shared_ptr<Shape> homeWithDoor(new Shapes::ShapeComposite(homeWithRoof, door, Shapes::ShapeOperation::DIFFERENCE));
-//
-//    constexpr int doorWidth = doorXTo - doorXFrom, doorHeigh = doorYTo - doorYFrom;
-//    constexpr int windowXFrom = homeXTo - homeWidth/2 + doorWidth/2;
-//    constexpr int windowXTo = windowXFrom + doorWidth;
-//    constexpr int windowYFrom = doorYFrom + doorHeigh/2;
-//    constexpr int windowYTo = doorYTo;
-//    shared_ptr<Shape> window(new Shapes::Rectangle(windowXFrom, windowYFrom, windowXTo, windowYTo));
-//    shared_ptr<Shape> homeWithDoorAndWindow(new Shapes::ShapeComposite(homeWithDoor, window, Shapes::ShapeOperation::DIFFERENCE));
-//    printShape(homeWithDoorAndWindow.get(), homeXTo, homeYTo+roofHeigh);
-//    /** entire home:
-//     y
-//     21:            *******
-//     20:          ***********
-//     19:         *************
-//     18:        ***************
-//     17:       *****************
-//     16:      *******************
-//     15:      *******************
-//     14:     *********************
-//     13:     *********************
-//     12:     ***      ***      ***
-//     11:     ***      ***      ***
-//     10:     ***      ***      ***
-//      9:     ***      ***      ***
-//      8:     ***      ***      ***
-//      7:     ***      ***      ***
-//      6:     ***      ************
-//      5:     ***      ************
-//      4:     ***      ************
-//      3:     ***      ************
-//      2:     ***      ************
-//      1:     *********************
-//      0:
-//       : 0123456789012345678901234 x **/
-//
-//    ASSERT_FALSE(homeWithDoorAndWindow->isIn(doorXFrom, doorYFrom));
-//    ASSERT_FALSE(homeWithDoorAndWindow->isIn(doorXTo, doorYTo));
-//    ASSERT_FALSE(homeWithDoorAndWindow->isIn(windowXFrom, windowYFrom));
-//    ASSERT_FALSE(homeWithDoorAndWindow->isIn(windowXTo, windowYTo));
-//
-//    ASSERT_TRUE(homeWithDoorAndWindow->isIn(homeXFrom, homeYFrom));
-//    ASSERT_TRUE(homeWithDoorAndWindow->isIn(homeXTo, homeYTo));
-//#else
-//    ADD_FAILURE() << "Required classes not implemented not implemented!";
-//#endif
-//}
+TEST_F(ShapeCompositeTester, sumOfSqhareAndCircle)
+{
+#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
+    constexpr int xFrom = 2, xTo = 8;
+    constexpr int yFrom = 0, yTo = 6;
+    shared_ptr<Shape> rectangle(new Shapes::Rectangle(xFrom, yFrom, xTo, yTo));
+    printShape(rectangle.get(), xTo, yTo);
+    /** (rectangle)
+     y
+     6:   *******
+     5:   *******
+     4:   *******
+     3:   *******
+     2:   *******
+     1:   *******
+     0:   *******
+      : 012345678 x
+     */
+
+    constexpr auto squareXCenter = xFrom+(xTo-xFrom)/2, yCenter = yTo, radius = (xTo-xFrom)/2;
+    shared_ptr<Shape> circle(new Shapes::Circle(squareXCenter, yCenter, radius));
+    printShape(circle.get(), xTo, yTo+radius);
+    /** circle:
+     y
+     9:     ***
+     8:    *****
+     7:   *******
+     6:   *******
+     5:   *******
+     4:    *****
+     3:     ***
+     2:
+     1:
+     0:
+      : 012345678
+     */
+
+
+    const Shapes::ShapeComposite composite(rectangle, circle, Shapes::ShapeOperation::SUM);
+    printShape(&composite, xTo, yTo+radius);
+    /** circle + square:
+     y
+     9:     ***
+     8:    *****
+     7:   *******
+     6:   *******
+     5:   *******
+     4:   *******
+     3:   *******
+     2:   *******
+     1:   *******
+     0:   *******
+      : 012345678 x **/
+    ASSERT_TRUE(composite.isIn(7, 6));
+    ASSERT_TRUE(composite.isIn(squareXCenter, yTo+radius));
+#else
+    ADD_FAILURE() << "Required classes not implemented not implemented!";
+#endif
+}
+
+TEST_F(ShapeCompositeTester, intersectionOfSqhareAndCircle)
+{
+#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
+    constexpr int xFrom = 2, xTo = 8;
+    constexpr int yFrom = 0, yTo = 6;
+    shared_ptr<Shape> rectangle(new Shapes::Rectangle(xFrom, yFrom, xTo, yTo));
+    printShape(rectangle.get(), xTo, yTo);
+    /** (rectangle)
+     y
+     6:   *******
+     5:   *******
+     4:   *******
+     3:   *******
+     2:   *******
+     1:   *******
+     0:   *******
+      : 012345678 x
+     */
+
+    constexpr auto squareXCenter = xFrom+(xTo-xFrom)/2, yCenter = yTo, radius = (xTo-xFrom)/2;
+    shared_ptr<Shape> circle(new Shapes::Circle(squareXCenter, yCenter, radius));
+    printShape(circle.get(), xTo, yTo+radius);
+    /** circle:
+     y
+     9:     ***
+     8:    *****
+     7:   *******
+     6:   *******
+     5:   *******
+     4:    *****
+     3:     ***
+     2:
+     1:
+     0:
+      : 012345678
+     */
+
+    const Shapes::ShapeComposite composite(rectangle, circle, Shapes::ShapeOperation::INTERSECTION);
+    printShape(&composite, xTo, yTo+radius);
+    /** circle + square:
+     y
+     7:
+     6:   *******
+     5:   *******
+     4:    *****
+     3:     ***
+     2:
+     1:
+     0:
+      : 012345678 x **/
+    ASSERT_TRUE(composite.isIn(xFrom, yTo));
+    ASSERT_FALSE(composite.isIn(xFrom, yFrom));
+#else
+    ADD_FAILURE() << "Required classes not implemented not implemented!";
+#endif
+}
+
+TEST_F(ShapeCompositeTester, differenceOfSqhareAndCircle)
+{
+#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
+    constexpr int xFrom = 2, xTo = 8;
+    constexpr int yFrom = 0, yTo = 6;
+    shared_ptr<Shape> rectangle(new Shapes::Rectangle(xFrom, yFrom, xTo, yTo));
+    printShape(rectangle.get(), xTo, yTo);
+    /** (rectangle)
+     y
+     6:   *******
+     5:   *******
+     4:   *******
+     3:   *******
+     2:   *******
+     1:   *******
+     0:   *******
+      : 012345678 x
+     */
+
+    constexpr auto squareXCenter = xFrom+(xTo-xFrom)/2, yCenter = yTo, radius = (xTo-xFrom)/2;
+    shared_ptr<Shape> circle(new Shapes::Circle(squareXCenter, yCenter, radius));
+    printShape(circle.get(), xTo, yTo+radius);
+    /** circle:
+     y
+     9:     ***
+     8:    *****
+     7:   *******
+     6:   *******
+     5:   *******
+     4:    *****
+     3:     ***
+     2:
+     1:
+     0:
+      : 012345678
+     */
+
+    const Shapes::ShapeComposite composite(rectangle, circle, Shapes::ShapeOperation::DIFFERENCE);
+    printShape(&composite, xTo, yTo+radius);
+    /** circle + square:
+     y
+     5:
+     4:   *     *
+     3:   **   **
+     2:   *******
+     1:   *******
+     0:   *******
+      : 012345678 x **/
+    ASSERT_FALSE(composite.isIn(xFrom, yTo));
+    ASSERT_TRUE(composite.isIn(xFrom, yFrom));
+#else
+    ADD_FAILURE() << "Required classes not implemented not implemented!";
+#endif
+}
+
+TEST_F(ShapeCompositeTester, drawingHouse)
+{
+#if SHAPECOMPOSITE_H_IMPLEMENTED && CIRCLE_H_IMPLEMENTED && RECTANGLE_H_IMPLEMENTED
+    constexpr int homeWidth = 20, homeHeigh = 10;
+    constexpr int homeXFrom = 4, homeXTo = homeXFrom+homeWidth, homeYFrom = 1, homeYTo = homeYFrom + homeHeigh;
+    shared_ptr<Shape> home(new Shapes::Rectangle(homeXFrom, homeYFrom, homeXTo, homeYTo));
+
+    constexpr int homeXCenter = homeXFrom + homeWidth/2, roofHeigh = homeWidth/2;
+    shared_ptr<Shape> roof(new Shapes::Circle(homeXCenter, homeYTo, roofHeigh));
+
+    shared_ptr<Shape> homeWithRoof(new Shapes::ShapeComposite(home, roof, Shapes::ShapeOperation::SUM));
+
+    constexpr int doorXFrom = homeXFrom + homeWidth/6, doorXTo = doorXFrom + homeWidth/4;
+    constexpr int doorYFrom = homeYFrom + 1, doorYTo = doorYFrom + homeHeigh/2 + homeHeigh/3 + homeHeigh/4;
+    shared_ptr<Shape> door(new Shapes::Rectangle(doorXFrom, doorYFrom, doorXTo, doorYTo));
+
+    shared_ptr<Shape> homeWithDoor(new Shapes::ShapeComposite(homeWithRoof, door, Shapes::ShapeOperation::DIFFERENCE));
+
+    constexpr int doorWidth = doorXTo - doorXFrom, doorHeigh = doorYTo - doorYFrom;
+    constexpr int windowXFrom = homeXTo - homeWidth/2 + doorWidth/2;
+    constexpr int windowXTo = windowXFrom + doorWidth;
+    constexpr int windowYFrom = doorYFrom + doorHeigh/2;
+    constexpr int windowYTo = doorYTo;
+    shared_ptr<Shape> window(new Shapes::Rectangle(windowXFrom, windowYFrom, windowXTo, windowYTo));
+    shared_ptr<Shape> homeWithDoorAndWindow(new Shapes::ShapeComposite(homeWithDoor, window, Shapes::ShapeOperation::DIFFERENCE));
+    printShape(homeWithDoorAndWindow.get(), homeXTo, homeYTo+roofHeigh);
+    /** entire home:
+     y
+     21:            *******
+     20:          ***********
+     19:         *************
+     18:        ***************
+     17:       *****************
+     16:      *******************
+     15:      *******************
+     14:     *********************
+     13:     *********************
+     12:     ***      ***      ***
+     11:     ***      ***      ***
+     10:     ***      ***      ***
+      9:     ***      ***      ***
+      8:     ***      ***      ***
+      7:     ***      ***      ***
+      6:     ***      ************
+      5:     ***      ************
+      4:     ***      ************
+      3:     ***      ************
+      2:     ***      ************
+      1:     *********************
+      0:
+       : 0123456789012345678901234 x **/
+
+    ASSERT_FALSE(homeWithDoorAndWindow->isIn(doorXFrom, doorYFrom));
+    ASSERT_FALSE(homeWithDoorAndWindow->isIn(doorXTo, doorYTo));
+    ASSERT_FALSE(homeWithDoorAndWindow->isIn(windowXFrom, windowYFrom));
+    ASSERT_FALSE(homeWithDoorAndWindow->isIn(windowXTo, windowYTo));
+
+    ASSERT_TRUE(homeWithDoorAndWindow->isIn(homeXFrom, homeYFrom));
+    ASSERT_TRUE(homeWithDoorAndWindow->isIn(homeXTo, homeYTo));
+#else
+    ADD_FAILURE() << "Required classes not implemented not implemented!";
+#endif
+}

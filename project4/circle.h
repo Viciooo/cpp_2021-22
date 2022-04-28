@@ -4,7 +4,8 @@
 
 #ifndef ZAD4SHAPEDRAWING_CIRCLE_H
 #define ZAD4SHAPEDRAWING_CIRCLE_H
-#import "shape.h"
+
+#include  "shape.h"
 namespace Shapes{
 class Circle :public Shape{
 public:
@@ -21,7 +22,7 @@ public:
     Circle(int x, int y, int radius) : x_(x), y_(y), radius(radius) {}
 
     [[nodiscard]] bool isIn(int x, int y) const override{
-        return pow((x_ - x),2) + pow((y_ - y),2) <= radius*radius;
+        return (x_ - x)*(x_ - x)+ (y_ - y)*(y_ - y) <= radius*radius;
     }
 private:
     int x_;

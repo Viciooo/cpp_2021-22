@@ -5,7 +5,7 @@
 #ifndef ZAD4SHAPEDRAWING_RECTANGLE_H
 #define ZAD4SHAPEDRAWING_RECTANGLE_H
 
-#import "shape.h"
+#include "shape.h"
 
 namespace Shapes {
     class Rectangle : public Shape {

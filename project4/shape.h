@@ -52,24 +52,18 @@ odpowiednich miejscach.
 Mozna tworzyc dowolna ilosc metod pomocniczych, jednakze aby byly one prywatne.
 **/
 
-namespace Shapes
-{
-struct Point
-{
-    int x_, y_;
-};
+namespace Shapes {
+    struct Point {
+        int x_, y_;
+    };
 
-class Shape
-{
+    class Shape {
     public:
-    Shape() = default;;
+        virtual ~Shape() = default;
 
-    virtual bool isIn(int x, int y) const = 0;
-};
+        [[nodiscard]] virtual bool isIn(int x, int y) const = 0;
+    };
+
 } // namespace Shapes
 
-
-class ShapeComposite : public Shapes::Shape{
-    ShapeComposite() = delete;
-};
 #endif // SHAPE_H
