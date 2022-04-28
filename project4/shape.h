@@ -61,8 +61,15 @@ struct Point
 
 class Shape
 {
-    // TODO:
+    public:
+    Shape() = default;;
+
+    virtual bool isIn(int x, int y) const = 0;
 };
 } // namespace Shapes
 
+
+class ShapeComposite : public Shapes::Shape{
+    ShapeComposite() = delete;
+};
 #endif // SHAPE_H

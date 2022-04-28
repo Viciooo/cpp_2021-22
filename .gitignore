@@ -135,3 +135,5 @@ googlemock/gtest
 /project2/tests/
 /project3/doxyfiles/
 /project3/tests/
+/project4/Dockerfile
+/project4/Doxyfile
